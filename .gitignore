@@ -1,0 +1,7 @@
+archive/
+dataset/
+*.pyc
+__pycache__/
+*.ipynb_checkpoints
+.env
+.vscode/
