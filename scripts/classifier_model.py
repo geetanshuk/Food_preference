@@ -1,10 +1,11 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import models, layers, applications
-from tensorflow.keras.applications import MobileNetV2
+from tensorflow.keras.applications import EfficientNetB0
 import json
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
+from tensorflow.keras.applications.efficientnet import preprocess_input
 
 food_ratings = {"ceaser_salad": {"rating": 7, "vegetarian": True}, "cheesecake": {"rating": 4, "vegetarian": True},
                "french_fries": {"rating": 9, "vegetarian": True}, "fried_rice": {"rating": 4, "vegetarian": True},
@@ -22,7 +23,7 @@ BATCH_SIZE = 32
 NUM_CLASSES = 22
 
 def normalize(image, label):
-    image = tf.cast(image, tf.float32) / 255.0  # convert to float and scale
+    image = preprocess_input(image)
     return image, label
 
 def preparing_data():
@@ -52,14 +53,11 @@ def model_setup():
         layers.RandomRotation(0.1),
         layers.RandomZoom(0.2),
     ])
-    base_model = MobileNetV2(input_shape=(224,224,3),
+    base_model = EfficientNetB0(input_shape=(224,224,3),
                             include_top=False,
                             weights='imagenet')
 
-    base_model.trainable = True
-
-    for layer in base_model.layers[:100]:
-        layer.trainable = False
+    base_model.trainable = False  # Freeze all layers
 
     # design the architecture of the model
     model = models.Sequential([
@@ -86,7 +84,7 @@ def train_and_test(train_ds, test_ds, model):
     history = model.fit(
         train_ds,
         validation_data=test_ds,
-        epochs=10,
+        epochs=15,
         callbacks=[checkpoint_cb, early_stop_cb]
     )
     return history, model
