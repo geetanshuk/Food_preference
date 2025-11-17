@@ -1,6 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras import models
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model, Model
 import numpy as np
 
 
@@ -14,6 +14,16 @@ def load_image(path):
 
 model1 = load_model("food_classifier.h5")
 
+embedding_model = Model(
+    inputs=model1.input,
+    outputs=model1.layers[-3].output  # Dense(128) layer before Dropout
+)
+
+
+
 img = load_image("new_food.jpg")
+
+embedding = embedding_model.predict(img)
+
 
 probs = model1.predict(img)
