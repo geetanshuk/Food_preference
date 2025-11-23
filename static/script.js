@@ -1,14 +1,7 @@
 function choose_photo() {
 
-    const chooseFile = confirm("OK = Choose from Files\nCancel = Take Photo");
-
-    if (chooseFile) {
-        // Trigger the file picker
-        document.getElementById("fileInput").click();
-    } else {
-        // Trigger the camera
-        document.getElementById("fileInput").click();
-    }
+    document.getElementById("fileInput").click();
+    
 
 }
 
