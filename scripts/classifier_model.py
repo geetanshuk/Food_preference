@@ -143,8 +143,6 @@ def predict_food(model, img_path):
 
 
 
-
-
 def main():
     # Prepare datasets
     # X_train, Y_train = binary_dataset(train_path, food_ratings)
@@ -157,7 +155,7 @@ def main():
     #     json.dump(history.history, file)
     # model.save("food_classifier.h5")
     model = load_model('food_classifier.h5')
-    probability = predict_food(model, "wings_test.jpg")
+    probability = predict_food(model, "caesar_salad_test.jpg")
     print("Probability friend likes it:", probability)
 
 if __name__ == "__main__":

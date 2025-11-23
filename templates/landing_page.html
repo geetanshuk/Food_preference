@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshiv is a big back</title>
+    <!-- Link to external CSS stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main_page">
+        <h1>Harshiv's a big back</h1>
+        <p>Wonder what this big back likes to eat? I wonder too!</p>
+        <img src="{{ url_for('static', filename='landing_image.png') }}" alt="big back">
+
+        <button id="preference_button" onclick="choose_photo()">Choose a photo!</button>
+        <input type="file" id="imageInput" accept="image/*" style="display:none">
+
+        <div id="result" style="margin-top:15px; font-weight:bold;"></div>
+
+        <form id="uploadForm" action="/predict" method="POST" enctype="multipart/form-data">
+            <input type="file" accept="image/*" capture="camera" id="cameraInput" name="image" style="display:none;">
+            <input type="file" accept="image/*" id="fileInput" name="image" style="display:none;">
+        </form>
+    </div>
+
+    <!-- Link to external JavaScript file, often placed at the end of body for performance -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

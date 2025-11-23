@@ -1,0 +1,31 @@
+.main_page {
+    text-align: center;
+}
+
+img {
+    width: 30%;
+    height: auto;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.main_page button {
+    position: absolute;
+    width: 75px;
+    height: 45px;
+    top: 21%;
+    left: 48%;
+    background-color: #04AA6D; /* Green background */
+    color: white; /* White text */
+    padding: 7px 7px; /* Top/bottom and left/right padding */
+    text-align: center; /* Center text horizontally */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Allow other elements to flow beside it */
+    font-size: 16px; /* Font size */
+    margin: 1px 1px; /* Top/bottom and left/right margin */
+    cursor: pointer; /* Change cursor to a pointer on hover */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Slightly rounded corners */
+}
