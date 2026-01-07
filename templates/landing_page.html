@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harshiv is a big back</title>
-    <!-- Link to external CSS stylesheet -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harshiv’s Big Back Meal Scanner</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
-    <div class="main_page">
-        <h1>Harshiv's a big back</h1>
-        <p>Wonder what this big back likes to eat? I wonder too!</p>
-        <img src="{{ url_for('static', filename='landing_image.png') }}" alt="big back">
+  <div class="hero">
+    <div class="overlay"></div>
+    <h1 class="hero-title">Feed The Big Back 🍽️</h1>
+    <p class="hero-sub">Upload a meal photo & discover what this menace eats</p>
+  </div>
 
-        <button id="preference_button" onclick="choose_photo()">Choose a photo!</button>
-        <input type="file" id="imageInput" accept="image/*" style="display:none">
+  <div class="wrapper">
+    <div class="card glass">
+      <h2 class="card-title">Choose a Photo</h2>
+      <p class="sub">Upload a food image — AI will analyze it.</p>
 
-        <div id="result" style="margin-top:15px; font-weight:bold;"></div>
+      <button class="primary-btn" id="preference_button" onclick="choose_photo()">
+        Upload Meal Photo
+      </button>
 
-        <form id="uploadForm" action="/predict" method="POST" enctype="multipart/form-data">
-            <input type="file" accept="image/*" capture="camera" id="cameraInput" name="image" style="display:none;">
-            <input type="file" accept="image/*" id="fileInput" name="image" style="display:none;">
-        </form>
+      <input type="file" id="imageInput" accept="image/*" style="display:none">
+
+      <div id="result" class="result"></div>
+
+      <form id="uploadForm" action="/predict" method="POST" enctype="multipart/form-data">
+        <input type="file" accept="image/*" capture="camera" id="cameraInput" name="image" style="display:none;">
+        <input type="file" accept="image/*" id="fileInput" name="image" style="display:none;">
+      </form>
     </div>
 
-    <!-- Link to external JavaScript file, often placed at the end of body for performance -->
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <div class="food-grid">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" />
+      <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd" />
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" />
+      <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061" />
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
