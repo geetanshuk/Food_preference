@@ -29,7 +29,7 @@ def predict():
 
     probability = predict_food_bytes(img)
 
-    return f"Probability friend likes it: {probability}"
+    return f"Probability friend likes it: {probability * 100:.2f}%"
 
 if __name__ == '__main__':
     app.run(debug=True)
